@@ -1,10 +1,16 @@
 const dotenv = require('dotenv')
 dotenv.config();
 
-let dbConnection = {
+module.exports =  {
   development: {
     client: 'pg',
-    connection: process.env.DATABASE_URL,
+    connection: {
+      port: 5432,
+      host: process.env.DATABASE_HOST,
+      database: process.env.DATABASE_NAME,
+      user: process.env.DATABASE_USER,
+      password: process.env.DATABASE_PASS
+    },
     migrations: {
       tableName: 'knex_migrations',
       directory: `${__dirname}/src/database/migrations`
@@ -19,8 +25,4 @@ let dbConnection = {
   FOR EACH ROW 
   EXECUTE PROCEDURE on_update_timestamp();
   `
-};
-
-module.exports = {
-  connection: dbConnection
 };
