@@ -1,13 +1,16 @@
-require('custom-env').env('development')
+const dotenv = require('dotenv')
+dotenv.config();
 
 module.exports = {
 
   development: {
     client: 'pg',
     connection: {
-        database: process.env.DB_NAME,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASS
+        port: 5432,
+        host: process.env.DATABASE_HOST, 
+        database: process.env.DATABASE_NAME,
+        user: process.env.DATABASE_USER,
+        password: process.env.DATABASE_PASS
     },
     migrations: {
       tableName: 'knex_migrations',
