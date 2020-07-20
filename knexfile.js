@@ -1,8 +1,7 @@
 const dotenv = require('dotenv')
 dotenv.config();
 
-module.exports = {
-
+let dbConnection = {
   development: {
     client: 'pg',
     connection: process.env.DATABASE_URL,
@@ -20,4 +19,8 @@ module.exports = {
   FOR EACH ROW 
   EXECUTE PROCEDURE on_update_timestamp();
   `
+};
+
+module.exports = {
+  connection: dbConnection
 };
